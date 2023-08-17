@@ -22,10 +22,10 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                    <li><a href="#" class="nav-link px-30 link-secondary">Home</a></li>
+                    <li><a href="#" class="nav-link px-5 link-body-emphasis">Products</a></li>
+                    <li><a href="#" class="nav-link px-5 link-body-emphasis">Mypage</a></li>
+                    <li><a href="#" class="nav-link px-5 link-body-emphasis">Notice</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -44,12 +44,18 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="#" id="logout-btn">Sign out</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </header>
+    <script>
+        $('#logout-btn').on("click", function () {
+            event.preventDefault();
+            window.location.href = '../view/logout.php';
+        })
+    </script>
 </body>
 
 </html>

@@ -20,6 +20,11 @@ class Member
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    // 세션 체크
+    public function sessionCheck()
+    {
+    }
+
 
     // sha256 (단방향 해시 암호화 -> 복호화 불가능)
     public function hashPassword($password)

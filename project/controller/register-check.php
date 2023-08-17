@@ -14,7 +14,7 @@ if (!$mem->emailCheck($email)) {
     die(json_encode($arr));
 }
 $sql = "SELECT count(*) AS cnt from tuser WHERE sEmail = '$email'";
-// db 연결을 conn으로 해서.ㄴ
+// db 연결을 conn으로 해서
 try {
     $stmt = $db->prepare($sql);
     $stmt->execute();
