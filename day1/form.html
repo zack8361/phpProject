@@ -1,0 +1,27 @@
+
+
+<form method="get" name = "form1" action="/form.php">
+	<div>
+	id  :  <input type="text" name="id" placeholder="이름을 입력하세요"><br>
+	</div>
+	<div>
+	password : <input type="password" name="password" placeholder="비밀번호 입력하세요">
+	</div>
+	<button type="submit">확인</button>
+</form>
+<script>
+	
+	const userID = document.getElementById("id");
+	const userPWD = document.getElementById("password");
+	
+	const kong = () => {
+		if(userID.value === '' || userPWD.value === ''){
+			alert("아이디 혹은 비밀번호를 입력해주세요");
+		}
+		else{
+			console.log("로그 남기기 ");
+			document.form1.submit();		
+		}
+	}
+	
+</script>
