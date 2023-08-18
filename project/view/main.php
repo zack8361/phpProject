@@ -1,5 +1,5 @@
 <?php
-include "./header.html";
+include "../view/common/header.html";
 include "../model/db.php";
 include "../model/memer.php";
 include "../model/objectMap.php";
@@ -18,6 +18,9 @@ if ($userId == '') {
 // model 객체 생성.
 $obj = new ObjectMap($db);
 $objMapList = $obj->objectMapList();
+
+$objJson = json_encode($objMapList);
+echo "<script> console.log($objJson);</script>"
 ?>
 
 <head>
@@ -51,7 +54,7 @@ $objMapList = $obj->objectMapList();
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <?php foreach ($objMapList as $value) { ?>
                     <div class="col">
-                        <div class="card shadow-sm card-container">
+                        <div class="card shadow-sm card-container" data-sObjectType="">
                             <div class="image-container">
                                 <img src="<?= $value['sObjectImage']; ?>" class="card-image">
                             </div>
@@ -59,7 +62,7 @@ $objMapList = $obj->objectMapList();
                                 <p class="card-text"><?= $value['sObjectName']; ?></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group" style="margin: auto;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary btn-view" id="btn-view" data-idx="<?= $value['sObjectType']; ?>">View</button>
                                     </div>
                                 </div>
                             </div>
@@ -69,5 +72,12 @@ $objMapList = $obj->objectMapList();
             </div>
         </div>
     </div>
+    <script>
+        $('.btn-view').on("click", function() {
+            console.log("하이")
+            const sObjectType = $(this).data('idx');
+            self.location.href = `./subMain.php?objectType=${sObjectType}`;
+        })
+    </script>
 </body>
-<?php include './footer.html' ?>
+<?php include "../view/common/footer.html"; ?>
