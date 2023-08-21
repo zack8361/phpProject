@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // 세션 변수 삭제
 unset($_SESSION['userId']);
 session_destroy();

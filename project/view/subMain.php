@@ -1,18 +1,30 @@
 <?php
 include "../model/object.php";
 include "../model/db.php";
-include "../model/object.php";
+include '../view/common/header.html';
 $objectType = isset($_GET['objectType']) ? $_GET['objectType'] : '';
 
-echo "<script> alert('$objectType'); </script>";
+$obj = new ObjectTable($db);
 
-include '../view/common/header.html';
+try {
+    $objList = $obj->subMain($objectType);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 ?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>subMain</title>
+    <!-- 스타일 시트를 포함하는 style 태그를 head 태그 안에 추가합니다. -->
+    <style>
+        .table-body tr:hover {
+            background-color: lightgray;
+            cursor: pointer;
+            /* 호버 효과에 대한 배경 색상을 설정합니다. */
+        }
+    </style>
 </head>
 
 <main class="w-75 mx-auto border rounded-5 p-5 bg-body-tertiary" style="height: calc(100vh-257px);">
@@ -22,89 +34,20 @@ include '../view/common/header.html';
                 <th>Code</th>
                 <th>Name</th>
                 <th>Status</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Data 1-1</td>
-                <td>Data 1-2</td>
-                <td>Data 1-3</td>
-            </tr>
-
-            <tr>
-                <td>Data 2-1</td>
-                <td>Data 2-2</td>
-                <td>Data 2-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-            <tr>
-                <td>Data 3-1</td>
-                <td>Data 3-2</td>
-                <td>Data 3-3</td>
-            </tr>
-
-        </tbody>
+        <?php foreach ($objList as $value) { ?>
+            <tbody class="table-body">
+                <tr>
+                    <td><?= $value['nObjectId']; ?></td>
+                    <td><?= $value['sObjectName']; ?></td>
+                    <td><?= $value['nRentStatus'] === 0 ? '대여 가능' : '대여 불가' ?></td>
+                    <td><button type="button" class="btn btn-success">Success</button></td>
+                </tr>
+            </tbody>
+        <?php  } ?>
     </table>
-
 </main>
 
 <?php include "../view/common/footer.html" ?>

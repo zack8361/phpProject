@@ -13,8 +13,11 @@ class ObjectMap
     // objectMapList 뽑기
     public function objectMapList()
     {
+        echo "hi";
+
         // 수정 1.
         $sql = "SELECT * FROM tobjectmap";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();

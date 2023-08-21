@@ -6,7 +6,6 @@ include "../model/objectMap.php";
 // 세션 처리.
 session_start();
 $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
-
 if ($userId == '') {
     die("
     <script> 
@@ -40,6 +39,7 @@ echo "<script> console.log($objJson);</script>"
             height: 150px;
             /* 조절할 이미지 높이 */
         }
+
 
         .card-image {
             max-width: 100%;
