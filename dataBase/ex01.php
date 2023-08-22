@@ -14,6 +14,7 @@ try {
     exit;
 }
 
+echo "성공";
 // 디비 생성해보기.
 // try{
 //     $sql = "CREATE DATABASE firstdb";
